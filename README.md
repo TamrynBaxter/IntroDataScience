@@ -1,6 +1,6 @@
 # IntroDataScience
 title: "Welcome!"
-author: "Nathan Bana"
+author: "Tamryn Maree Baxter"
 date: "3/10/2022"
 output: github_document
 ---
