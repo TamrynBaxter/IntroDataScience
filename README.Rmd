@@ -16,11 +16,11 @@ The **goal** of this report is to practice my *R Markdown* skills.
 ## List
 Here is a list:
 
-* one
-* two
-* three
-* four
-* five
+* eggs
+* bacon
+* tree
+* house
+* flower
 
 ## Picture
 Here is a picture of my mood
