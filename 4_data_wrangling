@@ -1,0 +1,46 @@
+---
+title: "Report 3"
+author: "Tamryn Baxter"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output: github_document
+---
+
+{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+I will be using the `murders` data-set from the `dslabs` package. 
+{r packages, message=FALSE, warning=FALSE}
+library(dslabs)
+library(dplyr)
+library(knitr)
+
+Let's filter by State name; we are only going to look at states starting with the letter "M":
+{r filter}
+murders2 <- murders %>%
+  filter(state %in% c("Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana")
+
+Now, let's select a subset of the columns; we are only going to look at state, population and total:
+{r select}
+murders2 <- murders2 %>% 
+  select(state, population, total)
+head(murders2)
+tail(murders2)
+str(murders2)
+
+Now let's arrange the data by state, by the highest-to-lowest total number of shootings, and the population:
+{r arrange}
+murders2 <- murders2 %>% 
+  arrange(state, desc(total), population)
+print(murders2)
+
+Nowe we can see the total number of murders per state, ranking from highest number to lowest.
+
+Next, let's calculate the mean total rate for each state. Let's also calculate the standard deviation:
+{r summarize}
+murders3 <- murders2 %>% 
+  group_by(state) %>% 
+  summarize(average_total=mean(total, na.rm=T), sd_total=sd(total, na.rm = T)) %>% 
+  arrange(average_total)
+print(murders3)
+
+We can now see the average number of shootings per state.
