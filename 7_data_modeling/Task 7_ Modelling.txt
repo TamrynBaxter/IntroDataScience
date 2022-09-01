@@ -1,0 +1,60 @@
+---
+title: 'TASK 7: Modelling'
+author: "Tami"
+date: "2022-09-01"
+output:
+  word_document: default
+  md_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+##TASK 7. Modeling
+##Load the dataset
+Default<- read.csv("BankSep.csv")
+```
+
+```{r}
+##Describe the data
+str(Default)
+```
+
+```{r}
+##Descriptive statistics
+summary(Default)
+```
+
+```{r}
+##Now, Visualize the data
+###Here, we can just create correlation plot to check for Correlations
+##Load the corrplot package
+library(tidyverse)
+library(dplyr)
+library(corrplot)
+
+Def_cor <- select_if(Default, is.numeric) %>% cor()
+corrplot(Def_cor, method = "number")
+```
+
+```{r}
+##Formluate a Hypothesis about the data
+#Before then, plot a boxplot
+boxplot(Default$duration)
+```
+
+```{r}
+##Our Null hypothesis is that the mean of duration is 100
+##The confidence interval is 0.95
+
+##Now, let's perform a one-sided sample t-test as the statistical test
+t.test(Default$duration, mu= 100, alternative= "less", conf= 0.95)
+```
+
+##Report the results
+#From the results, we can reject the null hypothesis that mean of duration is 100.
+
