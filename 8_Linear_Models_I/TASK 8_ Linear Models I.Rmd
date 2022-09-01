@@ -1,26 +1,16 @@
 ---
 title: 'TASK 8: Linear Models I'
-author: "Tami"
+author: "Tamryn Baxter"
 date: "2022-09-01"
-output: word_document
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
----
-title: 'TASK 8: Linear Models I'
-author: "Tami"
-date: "2022-09-01"
-output: word_document: default
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## R Markdown
 
@@ -52,7 +42,7 @@ library(MASS)# to create the histogram of the residuals
 
 ```{r}
 ## Run the simple regression model
-fit <- lm(sales ~ youtube, data = marketing)
+fit <- lm(sales ~ youtube, data = MarketData)
 ```
 
 ```{r}
