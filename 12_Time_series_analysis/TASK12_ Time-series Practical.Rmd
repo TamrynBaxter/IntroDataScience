@@ -1,10 +1,10 @@
 ---
 title: "TASK12: Time-series Practical"
-author: "Tami"
+author: "Tamryn Baxter"
 date: "2022-09-01"
-output:
-  md_document: default
-  word_document: default
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
