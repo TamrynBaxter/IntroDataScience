@@ -1,0 +1,152 @@
+---
+title: "TASK 9. Linear Models II"
+author: "Tami"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+##TASK 9. Linear Models II
+##Linear Mixed Models
+##LOad dataset
+Takyodt<- read.csv("Tayko.csv")
+```
+
+```{r}
+#Structure of data
+str(Takyodt)
+```
+
+##The response variable
+#In this data, my response variable is "Spending"
+
+##Run a Linear Mixed Model now.
+
+```{r}
+##First, check the independence of observations
+#Using the cor() function, test the relationship between independent variables to ensure they are not highly
+#correlated.
+cor(Takyodt$Freq, Takyodt$last_update_days_ago)
+cor(Takyodt$Freq,  Takyodt$X1st_update_days_ago)
+cor(Takyodt$Freq, Takyodt$Web.order)
+cor(Takyodt$Freq, Takyodt$Gender.male)
+cor(Takyodt$Freq, Takyodt$Address_is_res)
+cor(Takyodt$Freq, Takyodt$Purchase)
+```
+
+#The correlation between the independent variables is small as observed, so we can include the parameters in
+#in regression model
+
+```{r}
+##Check for Linearity
+##The r/ship between the independent and dependent variables must be linear. We can test this visually
+#by drawing a scatter plot to see if the distribution of data points is linear
+#This can be checked using scatter plots
+
+plot(Spending ~ Freq, main = "A plot of Spending against Frequency", data = Takyodt)
+plot(Spending ~ last_update_days_ago, main = "A plot of Spending against last_update_days_ago", data = Takyodt)
+plot(Spending ~ X1st_update_days_ago, main = "A plot of Spending against X1st_update_days_ago", data = Takyodt)
+plot(Spending ~ Web.order, main = "A plot of Spending against Web.order", data = Takyodt)
+plot(Spending ~ Gender.male, main = "A plot of Spending against Gender.male", data = Takyodt)
+plot(Spending ~ Address_is_res, main = "A plot of Spending against Address_is_res", data = Takyodt)
+plot(Spending ~ Purchase, main = "A plot of Spending against Purchase", data = Takyodt)
+```
+
+#Although some relationships are a bit less clear, it still appears linear
+#so we can proceed with linear regression.
+
+```{r}
+##Now, let's conduct the Linear Mixed Model analysis
+regmd<- lm(Spending ~ ., data = Takyodt)
+summary(regmd)
+```
+
+#From the statistics witnessed in the model, it is evident that some factors have no significant effect #on the  
+#amount of spending
+#A summary of the factors that have a significant effect on spending are as follows
+#The estimated effect of sequence number on spending is -0.004569
+#The estimated effect of source u on spending is -2.446
+#The estimated effect of Freq on spending is 77.329, which is quite high.
+#The estimated effect of last_update_days_ago on spending is -0.0155
+#The estimated effect of X1st_update_days_ago on spending is 0.0058
+#The estimated effect of Web.order on spending is -3.35
+#The estimated effect of Gender.male on spending is -1.587
+#The estimated effect of purchase on spending is 92.01, which is quite high
+
+
+#From the statistics above, frequency and purchase are the leading factors that influence the amount of spending
+#For instance, for every 1%  of frequency, there is a 77.329% increase in spending,
+#For every 1% of purchase, there is a 92.01% increase in spending,
+#The other factors that least affect spending are;
+#For every 1% of sequence number, there is 2.446% decrease in spending
+#For every 1% of last_update_days_ago, there is 3.35% decrease in spending
+#For every 1% of Gender.male, there is 1.587% decrease in spending
+
+```{r}
+##Lets now chekc for homoscedacity)
+#This involves checking whether the observed data meets our model assumptions.
+par(mfrow= c(2,2))
+plot(regmd)
+par(mfrow= c(1,1))
+```
+#The residuals show no bias, so the model fits the assumption of homoscedasticity
+
+```{r}
+##Let's now predict the models
+#Predicting the values of speding based on the linear model
+predict01<- predict.lm(regmd, data= Takyodt)
+```
+
+#Reporting the results
+##From the results of the model, there is a significant relationship between price of vehicles and tax,
+#price and engine size since they have a p value of less than 0.005 (p<0.005).
+
+```{r}
+##Use the Random Forest Model
+library(stats)
+library(randomForest)
+
+##Split the data into testing and training 
+index<- sample(2, nrow(Takyodt), replace = TRUE, prob = c(0.7, 0.3))
+```
+
+```{r}
+##Training data
+Training<- Takyodt[index==1, ]
+```
+
+```{r}
+##Testing data
+Testing<- Takyodt[index== 2, ]
+```
+
+```{r}
+##Random Forest Model
+RMF<- randomForest(Spending ~., data = Training)
+```
+
+```{r}
+##Evaluating model accuracy
+Spending_pred<- predict(RMF, Testing)
+```
+
+```{r}
+##Confusion Matrix
+CFM<- table(Testing$Spending, Spending_pred)
+```
+
+```{r}
+##Let's use the Logistic Regression Model
+GLM<- glm(Purchase~ ., family = "binomial", data = Training)
+summary(GLM)
+```
+## Which model describes better your data? Explain
+#Undoubtedly, Linear Mixed Model describes my data appropriately. This is because I was able to conduct an analysis and clearly understand the effects of corresponsing variables on spending
