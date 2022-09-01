@@ -1,18 +1,31 @@
+TASK 6. Visualizations
+================
+Tami
+2022-09-01
+
+-   [R Markdown](#r-markdown)
+
 ## R Markdown
 
-    ##TASK 6. Visualisations II
+``` r
+##TASK 6. Visualisations II
 
-    ##Load the dataset
-    BankData<- read.csv("BankSep.csv")
+##Load the dataset
+BankData<- read.csv("BankSep.csv")
+```
 
-    ##Visualize the data
-    ##First, check the no. of observations
-    dim(BankData)
+``` r
+##Visualize the data
+##First, check the no. of observations
+dim(BankData)
+```
 
     ## [1] 4119   21
 
-    ##Check structure of data
-    str(BankData)
+``` r
+##Check structure of data
+str(BankData)
+```
 
     ## 'data.frame':    4119 obs. of  21 variables:
     ##  $ age           : int  30 39 25 38 47 32 32 41 31 35 ...
@@ -37,25 +50,29 @@
     ##  $ nr.employed   : num  5099 5191 5228 5228 5196 ...
     ##  $ y             : chr  "no" "no" "no" "no" ...
 
-    ##Now, let's visualize the data
-    ##We can create a density plot
-    library(tidyverse)
+``` r
+##Now, let's visualize the data
+##We can create a density plot
+library(tidyverse)
+```
 
-    ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-    ## v ggplot2 3.3.6     v purrr   0.3.4
-    ## v tibble  3.1.6     v dplyr   1.0.9
-    ## v tidyr   1.2.0     v stringr 1.4.0
-    ## v readr   2.1.2     v forcats 0.5.1
+    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.9
+    ## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+    ## ✓ readr   2.1.2     ✓ forcats 0.5.1
 
-    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
-    library(dplyr)
-    BankData %>% 
-      ggplot(aes(x= duration, fill= y))+
-      geom_density(alpha= 0.5)+
-      theme_gray()
+``` r
+library(dplyr)
+BankData %>% 
+  ggplot(aes(x= duration, fill= y))+
+  geom_density(alpha= 0.5)+
+  theme_gray()
+```
 
-![](Task-6--Visualizations-II_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](Task-6_-Visualizations-II_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
