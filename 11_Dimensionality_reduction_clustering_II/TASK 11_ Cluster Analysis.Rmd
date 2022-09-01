@@ -1,0 +1,51 @@
+---
+title: 'TASK 11: Cluster Analysis'
+author: "Tami"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+##TASK 11. Cluster Analysis
+##Using the Iris Dataset
+#Load Iris
+data("iris")
+```
+
+
+```{r}
+##Remove "species" column
+library(tidyverse)
+library(dplyr)
+NewIris<- select(iris, -Species)
+```
+
+```{r}
+##Conduct cluste analysis using 3 clusters
+irisCluster<- kmeans(NewIris, centers = 3, nstart = 20)
+```
+
+```{r}
+##We can compare the predicted clusters with the original data.
+table(irisCluster$cluster, iris$Species)
+```
+
+```{r}
+##Visualize Clusters 
+library(cluster)
+clusplot(iris, irisCluster$cluster, color = T, shade = T, labels = 0, lines = 0)
+```
+##Notably, setosa cluster perfectly elaborated, while virginica and versicolor have a little noise between their clusters
+
+```{r}
+##Some other visual plots
+plot(NewIris[c("Sepal.Length", "Sepal.Width")], col= irisCluster$cluster)
+```
