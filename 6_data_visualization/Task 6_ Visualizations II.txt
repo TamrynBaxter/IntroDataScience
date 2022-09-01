@@ -1,0 +1,44 @@
+---
+title: "TASK 6. Visualizations"
+author: "Tami"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+##TASK 6. Visualisations II
+
+##Load the dataset
+BankData<- read.csv("BankSep.csv")
+```
+
+
+```{r}
+##Visualize the data
+##First, check the no. of observations
+dim(BankData)
+```
+
+```{r}
+##Check structure of data
+str(BankData)
+```
+
+```{r}
+##Now, let's visualize the data
+##We can create a density plot
+library(tidyverse)
+library(dplyr)
+BankData %>% 
+  ggplot(aes(x= duration, fill= y))+
+  geom_density(alpha= 0.5)+
+  theme_gray()
+```
