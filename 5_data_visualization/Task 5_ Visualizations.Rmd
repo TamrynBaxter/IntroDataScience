@@ -1,0 +1,53 @@
+---
+title: 'TASK 5: Visualizations'
+author: "Tamryn Baxter"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+##TASK 5.Visualizations I
+
+##Import the dataset
+Hartford<- read.csv("HartfordDeathsCleaned.csv")
+```
+
+```{r}
+##Content description
+##View the datatypes
+str(Hartford)
+```
+
+```{r}
+##Transform the data from wide into long format
+library(reshape2)
+DataWide<- melt(Hartford, value= c("Age", "Cause"))
+```
+
+```{r}
+##Split the Neighbourhood column into Neighbor and Direction
+library(tidyr)
+sepData<- separate(DataWide, col = Neighborhood, into = c("Neighbor", "Direction"), sep = " ")
+```
+
+```{r}
+##Combine columns gender and AgeGroup
+CombineData<- unite(Hartford, Gender_Group, Gender, AgeGroup, sep = "/")
+```
+
+```{r}
+##Create a plot using ggplot
+library(ggplot2)
+Hartford %>% 
+  ggplot(aes(x= Age, y= Cause, fill= Neighborhood))+
+  geom_bar(stat= "identity", color= "maroon")+
+  scale_fill_viridis_d()
+```
+
