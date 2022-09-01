@@ -1,0 +1,108 @@
+---
+title: 'TASK 10: Dimensionality reduction and Clustering I'
+author: "Tami"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+##TASK 10. Dimensionality reduction and clustering I
+##Load the iris dataset
+library(tidyverse)
+library(dplyr)
+data(iris)
+```
+
+```{r}
+##Convert iris data into unlabelled dataset
+df<- iris
+dfIris<- select(df, -Species)
+```
+
+```{r}
+##Check the PCA eligibility
+cor(dfIris)
+mean(cor(dfIris))
+#The variables are eligible for PCA
+```
+
+
+##Formulate two questions or hypotheses on the data, that you want to answer by using a PCA
+#1. Check whether the PCs capture the essence of the original variable
+#2. Check whether the PCs are independent
+
+```{r}
+##Now, let's run PCA
+PCA<- princomp(dfIris)
+```
+
+```{r}
+##Inspect the loadings with the PCA object
+PCA$loadings
+```
+
+```{r}
+##Use the score to check principal components
+PCvalues<- PCA$scores
+```
+
+```{r}
+##Check correlation to see whether they are independent
+cor(PCvalues)
+```
+
+##The correlation is almost zero, therefore, the variables are independent.
+
+```{r}
+##Visualize PCA
+#install.packages("ggfortify")
+library(ggfortify)
+```
+
+```{r}
+PCAplot<- autoplot(PCA, data = iris, colour= 'Species')
+PCAplot
+```
+
+```{r}
+##Explain the variances with a scree plot
+library(ggplot2)
+```
+
+```{r}
+##calculate total variance explained by each principal component
+var_explained = PCA$sdev^2 / sum(PCA$sdev^2)
+```
+
+```{r}
+##Create a Scree plot
+qplot(c(1:4), var_explained) + 
+  geom_line() + 
+  xlab("Principal Component") + 
+  ylab("Variance Explained") +
+  ggtitle("Scree Plot") +
+  ylim(0, 1)
+```
+
+```{r}
+##Investigate potential correlations of your PCs 
+biplot(PCA)
+```
+
+##Comment what you can see on them and how you interpret the result
+
+```{r}
+print(var_explained)
+```
+##The first principal component explains 92.46% of the total variation in the dataset.
+##The second principal component explains 5.31% of the total variation in the dataset.
+##The third principal component explains 1.71% of the total variation in the dataset.
+##The first principal component explains 0.5% of the total variation in the dataset.
