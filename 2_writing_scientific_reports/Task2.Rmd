@@ -1,0 +1,40 @@
+---
+title: "My second Task"
+author: "Tamryn Baxter"
+date: "2022-09-01"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Goal
+my **goal** of this report is to show everyone how much I love *flowers!*
+
+## List
+This is how I create a list:
+
+** Cars:
+* Porsche
+* Ferrari
+* VW
+* BMW
+
+## Picture
+Here is a drawing of some flowers
+
+![](https://cdn.shopify.com/s/files/1/0633/7039/5889/files/cup-of-flowers-blogpic-2-scaled.jpg)
+
+## Data set
+Here is an example of a dataset, I chose to compare flower Iris's *
+
+```{r iris}
+library(knitr)
+kable(iris)
+```
+## References
+I will reference the picture of the flower that I downlaoded. you can find it here *"https://makeandtell.com/blogs/blog/cup-of-flowers-desktop-phone-and-tablet-wallpaper"* give their website a visit and look at their other wallpapers:
+:
