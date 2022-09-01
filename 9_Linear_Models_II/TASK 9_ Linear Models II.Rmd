@@ -2,9 +2,9 @@
 title: "TASK 9. Linear Models II"
 author: "Tami"
 date: "2022-09-01"
-output:
-  md_document: default
-  word_document: default
+output: 
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
