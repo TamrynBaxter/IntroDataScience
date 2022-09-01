@@ -1,0 +1,104 @@
+---
+title: 'TASK 4: Wrangling'
+author: "Tamryn Baxter"
+date: "2022-09-01"
+output:
+  md_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+##TASK 4: Wrangling 
+##Let's use a dataset that is inbuilt from R
+data("starwars")
+```
+
+```{r}
+##Filter the data by two variables
+Newdata<- starwars %>%  
+  filter(species== "Human" | species== "Droid")
+```
+
+```{r}
+##Select a subset of the columns
+Col_subset<- Newdata %>% 
+  select(mass, eye_color, birth_year, gender)
+```
+
+```{r}
+##Display the first few rows of the dataframe(first 8 rows)
+head(Newdata, 8)
+```
+
+```{r}
+##Display the last few rows of the data(last 8 rows)
+tail(Newdata, 8)
+```
+
+```{r}
+##Display the structure of the dataframe
+str(Newdata)
+```
+
+```{r}
+##Display data arranged by columns by having height column in ascending order
+ArrangeData<- Newdata[order(Newdata$height),]
+##Now, let's just display the first 10 rows of the data
+head(ArrangeData, 10)
+```
+
+```{r}
+##Description of any pattern in the data (if any)
+#The pattern I observed is that the Droid species have the lowest height as compared to human's height which starts from 150.
+#This is quite a huge gap in the height of the two species.
+
+##Summarize your results and display them by mean(ascending order)
+Results<- Newdata %>% 
+  group_by(species) %>% 
+  summarise(mymean= mean(height, na.rm= TRUE))
+Results
+```
+
+
+```{r}
+##Filter out the Na's in the dataset and report the no. of rows affected (removed)
+##First, check the no. of observations inlcuding the Nas
+dim(Newdata)
+```
+
+```{r}
+##Remove the Nas
+Filt<- Newdata %>% 
+  na.omit()
+```
+
+```{r}
+##View the no. of observations after filtering
+dim(Filt)
+```
+
+##Output
+#The no. of rows affected (removed are 23)
+
+
+```{r}
+##Load two datasets and join them (made available on <https://www.kaggle.com/>)
+##First, Import the datasets
+Test<- read.csv("test.csv")
+Training<- read.csv("training.csv")
+```
+
+```{r}
+##Now, merge the two datasets
+FinalData<- merge(Test, Training, by= "Sample.ID")
+```
+
+##Describe how you could explore the relationship between two variables in the combined dataset
+#I would explore the variables "Download Source" and "Actually Malicious". The download sources may either 
+#have been malicious or not malicious. 
