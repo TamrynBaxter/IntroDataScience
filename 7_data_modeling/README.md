@@ -1,11 +1,22 @@
+TASK 7: Modelling
+================
+Tamryn Baxter
+2022-09-01
+
+-   [R Markdown](#r-markdown)
+
 ## R Markdown
 
-    ##TASK 7. Modeling
-    ##Load the dataset
-    Default<- read.csv("BankSep.csv")
+``` r
+##TASK 7. Modeling
+##Load the dataset
+Default<- read.csv("BankSep.csv")
+```
 
-    ##Describe the data
-    str(Default)
+``` r
+##Describe the data
+str(Default)
+```
 
     ## 'data.frame':    4119 obs. of  21 variables:
     ##  $ age           : int  30 39 25 38 47 32 32 41 31 35 ...
@@ -30,8 +41,10 @@
     ##  $ nr.employed   : num  5099 5191 5228 5228 5196 ...
     ##  $ y             : chr  "no" "no" "no" "no" ...
 
-    ##Descriptive statistics
-    summary(Default)
+``` r
+##Descriptive statistics
+summary(Default)
+```
 
     ##       age            job              marital           education        
     ##  Min.   :18.00   Length:4119        Length:4119        Length:4119       
@@ -76,43 +89,53 @@
     ##                    
     ## 
 
-    ##Now, Visualize the data
-    ###Here, we can just create correlation plot to check for Correlations
-    ##Load the corrplot package
-    library(tidyverse)
+``` r
+##Now, Visualize the data
+###Here, we can just create correlation plot to check for Correlations
+##Load the corrplot package
+library(tidyverse)
+```
 
-    ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-    ## v ggplot2 3.3.6     v purrr   0.3.4
-    ## v tibble  3.1.6     v dplyr   1.0.9
-    ## v tidyr   1.2.0     v stringr 1.4.0
-    ## v readr   2.1.2     v forcats 0.5.1
+    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.9
+    ## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+    ## ✓ readr   2.1.2     ✓ forcats 0.5.1
 
-    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
-    library(dplyr)
-    library(corrplot)
+``` r
+library(dplyr)
+library(corrplot)
+```
 
     ## corrplot 0.92 loaded
 
-    Def_cor <- select_if(Default, is.numeric) %>% cor()
-    corrplot(Def_cor, method = "number")
+``` r
+Def_cor <- select_if(Default, is.numeric) %>% cor()
+corrplot(Def_cor, method = "number")
+```
 
-![](Task-7--Modelling_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](Task-7_-Modelling_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-    ##Formluate a Hypothesis about the data
-    #Before then, plot a boxplot
-    boxplot(Default$duration)
+``` r
+##Formluate a Hypothesis about the data
+#Before then, plot a boxplot
+boxplot(Default$duration)
+```
 
-![](Task-7--Modelling_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](Task-7_-Modelling_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-    ##Our Null hypothesis is that the mean of duration is 100
-    ##The confidence interval is 0.95
+``` r
+##Our Null hypothesis is that the mean of duration is 100
+##The confidence interval is 0.95
 
-    ##Now, let's perform a one-sided sample t-test as the statistical test
-    t.test(Default$duration, mu= 100, alternative= "less", conf= 0.95)
+##Now, let's perform a one-sided sample t-test as the statistical test
+t.test(Default$duration, mu= 100, alternative= "less", conf= 0.95)
+```
 
     ## 
     ##  One Sample t-test
