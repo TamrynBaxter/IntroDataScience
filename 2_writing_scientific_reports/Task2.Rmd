@@ -15,9 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 my **goal** of this report is to show everyone how much I love *flowers!*
 
 ## List
-This is how I create a list:
+This is how I create a list of cars:
 
-** Cars:
 * Porsche
 * Ferrari
 * VW

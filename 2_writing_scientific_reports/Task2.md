@@ -16,9 +16,12 @@ my **goal** of this report is to show everyone how much I love
 
 ## List
 
-This is how I create a list:
+This is how I create a list of cars:
 
-\*\* Cars: \* Porsche \* Ferrari \* VW \* BMW
+-   Porsche
+-   Ferrari
+-   VW
+-   BMW
 
 ## Picture
 
