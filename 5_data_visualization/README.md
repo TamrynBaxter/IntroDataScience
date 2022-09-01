@@ -65,10 +65,10 @@ CombineData<- unite(Hartford, Gender_Group, Gender, AgeGroup, sep = "/")
 ``` r
 ##Create a plot using ggplot
 library(ggplot2)
-Hartford %>% 
-  ggplot(aes(x= Age, y= Cause, fill= Neighborhood))+
-  geom_bar(stat= "identity", color= "maroon")+
-  scale_fill_viridis_d()
+Hartford %>%
+    ggplot(aes(YearOfDeath, fill= Cause))+
+    geom_bar(position = "fill", alpha= 0.5)+
+    theme_gray()
 ```
 
 ![](Task-5_-Visualizations_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
