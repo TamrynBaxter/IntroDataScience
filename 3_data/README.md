@@ -1,36 +1,51 @@
-    ##Load required packages
-    library(tidyverse)
+Task Three: Data
+================
+Tamrn Baxter
+2022-09-01
 
-    ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+``` r
+##Load required packages
+library(tidyverse)
+```
 
-    ## v ggplot2 3.3.6     v purrr   0.3.4
-    ## v tibble  3.1.6     v dplyr   1.0.9
-    ## v tidyr   1.2.0     v stringr 1.4.0
-    ## v readr   2.1.2     v forcats 0.5.1
+    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-    ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+    ## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.9
+    ## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+    ## ✓ readr   2.1.2     ✓ forcats 0.5.1
+
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## x dplyr::filter() masks stats::filter()
     ## x dplyr::lag()    masks stats::lag()
 
-    library(dplyr)
+``` r
+library(dplyr)
+```
 
-    ##TASK 3
+``` r
+##TASK 3
 
-    #Dataset 1
-    #Our first data comes from R (It is inbuilt)
-    ##Load any pre-loaded data in R
-    data(msleep)
+#Dataset 1
+#Our first data comes from R (It is inbuilt)
+##Load any pre-loaded data in R
+data(msleep)
+```
 
-    ##Let's do some analysis on the msleep dataset
-    ##Check the number of observations
-    dim(msleep)
+``` r
+##Let's do some analysis on the msleep dataset
+##Check the number of observations
+dim(msleep)
+```
 
     ## [1] 83 11
 
-    ##Check the structure of the data, that is, check the datatypes
-    str(msleep)
+``` r
+##Check the structure of the data, that is, check the datatypes
+str(msleep)
+```
 
-    ## tibble [83 x 11] (S3: tbl_df/tbl/data.frame)
+    ## tibble [83 × 11] (S3: tbl_df/tbl/data.frame)
     ##  $ name        : chr [1:83] "Cheetah" "Owl monkey" "Mountain beaver" "Greater short-tailed shrew" ...
     ##  $ genus       : chr [1:83] "Acinonyx" "Aotus" "Aplodontia" "Blarina" ...
     ##  $ vore        : chr [1:83] "carni" "omni" "herbi" "omni" ...
@@ -45,11 +60,13 @@
 
 \##As evident, we can see the datatypes of the variables, for instance,
 the name, genus, and vore are all categorical variables while the rest
-are numerical variables. Sleep\_total, awake, brainnt, and bodywt are
-quantitative while sleep\_cycle is qualitative in nature.
+are numerical variables. Sleep_total, awake, brainnt, and bodywt are
+quantitative while sleep_cycle is qualitative in nature.
 
-    ##Do some descriptive statistics of the data (this is its description in terms of statistical variables)
-    summary(msleep)
+``` r
+##Do some descriptive statistics of the data (this is its description in terms of statistical variables)
+summary(msleep)
+```
 
     ##      name              genus               vore              order          
     ##  Length:83          Length:83          Length:83          Length:83         
@@ -76,21 +93,29 @@ quantitative while sleep\_cycle is qualitative in nature.
     ##  Max.   :22.10   Max.   :5.71200   Max.   :6654.000  
     ##                  NA's   :27
 
-    ##The summary statistics shows the mean, max, min, 1st and 3rd quartiles of the data.
+``` r
+##The summary statistics shows the mean, max, min, 1st and 3rd quartiles of the data.
+```
 
-    ##Dataset 2
+``` r
+##Dataset 2
 
-    #The second dataset we will be exploring is made available on <https://www.kaggle.com/>
-    ##Import the first dataset
-    Loan_default_Data<- read.csv("Loan_Default.csv")
+#The second dataset we will be exploring is made available on <https://www.kaggle.com/>
+##Import the first dataset
+Loan_default_Data<- read.csv("Loan_Default.csv")
+```
 
-    ##Check the number of observations
-    dim(Loan_default_Data)
+``` r
+##Check the number of observations
+dim(Loan_default_Data)
+```
 
     ## [1] 148670     34
 
-    ##Check the structure of the data (Check datatypes)
-    str(Loan_default_Data)
+``` r
+##Check the structure of the data (Check datatypes)
+str(Loan_default_Data)
+```
 
     ## 'data.frame':    148670 obs. of  34 variables:
     ##  $ ID                       : int  24890 24891 24892 24893 24894 24895 24896 24897 24898 24899 ...
@@ -128,14 +153,16 @@ quantitative while sleep\_cycle is qualitative in nature.
     ##  $ Status                   : int  1 1 0 0 0 0 0 0 0 0 ...
     ##  $ dtir1                    : num  45 NA 46 42 39 40 44 42 44 30 ...
 
-    ##Do descriptive statistics of the data
-    summary(Loan_default_Data)
+``` r
+##Do descriptive statistics of the data
+summary(Loan_default_Data)
+```
 
     ##        ID              year       loan_limit           Gender         
     ##  Min.   : 24890   Min.   :2019   Length:148670      Length:148670     
     ##  1st Qu.: 62057   1st Qu.:2019   Class :character   Class :character  
-    ##  Median : 99225   Median :2019   Mode  :character   Mode  :character  
-    ##  Mean   : 99225   Mean   :2019                                        
+    ##  Median : 99224   Median :2019   Mode  :character   Mode  :character  
+    ##  Mean   : 99224   Mean   :2019                                        
     ##  3rd Qu.:136392   3rd Qu.:2019                                        
     ##  Max.   :173559   Max.   :2019                                        
     ##                                                                       
@@ -204,64 +231,53 @@ quantitative while sleep\_cycle is qualitative in nature.
     ##                     Max.   :1.0000   Max.   :61.00  
     ##                                      NA's   :24121
 
-    ##Dataset 3
-    #The third dataset we will be exploring is also made available on <https://www.kaggle.com/>
-    ##Import the dataset
-    SalaryInfor<- read.csv("salary.csv")
+``` r
+##Dataset 3
+#The third dataset we will be exploring is also made available on <https://www.kaggle.com/>
+##Import the dataset
+SalaryInfor<- read.csv("salary.csv")
+```
 
-    ##Check the number of observations
-    dim(SalaryInfor)
+``` r
+##Check the number of observations
+dim(SalaryInfor)
+```
 
-    ## [1] 32561    15
+    ## [1] 31101     8
 
-    ##Check the dataset datatypes
-    str(SalaryInfor)
+``` r
+##Check the dataset datatypes
+str(SalaryInfor)
+```
 
-    ## 'data.frame':    32561 obs. of  15 variables:
-    ##  $ age           : int  39 50 38 53 28 37 49 52 31 42 ...
-    ##  $ workclass     : chr  " State-gov" " Self-emp-not-inc" " Private" " Private" ...
-    ##  $ fnlwgt        : int  77516 83311 215646 234721 338409 284582 160187 209642 45781 159449 ...
-    ##  $ education     : chr  " Bachelors" " Bachelors" " HS-grad" " 11th" ...
-    ##  $ education.num : int  13 13 9 7 13 14 5 9 14 13 ...
-    ##  $ marital.status: chr  " Never-married" " Married-civ-spouse" " Divorced" " Married-civ-spouse" ...
-    ##  $ occupation    : chr  " Adm-clerical" " Exec-managerial" " Handlers-cleaners" " Handlers-cleaners" ...
-    ##  $ relationship  : chr  " Not-in-family" " Husband" " Not-in-family" " Husband" ...
-    ##  $ race          : chr  " White" " White" " White" " Black" ...
-    ##  $ sex           : chr  " Male" " Male" " Male" " Male" ...
-    ##  $ capital.gain  : int  2174 0 0 0 0 0 0 0 14084 5178 ...
-    ##  $ capital.loss  : int  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ hours.per.week: int  40 13 40 40 40 40 16 45 50 40 ...
-    ##  $ native.country: chr  " United-States" " United-States" " United-States" " United-States" ...
-    ##  $ salary        : chr  " <=50K" " <=50K" " <=50K" " <=50K" ...
+    ## 'data.frame':    31101 obs. of  8 variables:
+    ##  $ Name             : chr  "AARON,  JEFFERY M" "AARON,  KARINA" "ABAD JR,  VICENTE M" "ABARCA,  EMMANUEL" ...
+    ##  $ Job.Titles       : chr  "SERGEANT" "POLICE OFFICER (ASSIGNED AS DETECTIVE)" "CIVIL ENGINEER IV" "CONCRETE LABORER" ...
+    ##  $ Department       : chr  "POLICE" "POLICE" "WATER MGMNT" "TRANSPORTN" ...
+    ##  $ Full.or.Part.Time: chr  "F" "F" "F" "F" ...
+    ##  $ Salary.or.Hourly : chr  "Salary" "Salary" "Salary" "Hourly" ...
+    ##  $ Typical.Hours    : int  NA NA NA 40 NA 40 NA NA 20 NA ...
+    ##  $ Annual.Salary    : num  122568 110796 122112 NA 86730 ...
+    ##  $ Hourly.Rate      : num  NA NA NA 45.9 NA 51 NA NA 3 NA ...
 
-    ##Descriptive statistics of the data
-    summary(SalaryInfor)
+``` r
+##Descriptive statistics of the data
+summary(SalaryInfor)
+```
 
-    ##       age         workclass             fnlwgt         education        
-    ##  Min.   :17.00   Length:32561       Min.   :  12285   Length:32561      
-    ##  1st Qu.:28.00   Class :character   1st Qu.: 117827   Class :character  
-    ##  Median :37.00   Mode  :character   Median : 178356   Mode  :character  
-    ##  Mean   :38.58                      Mean   : 189778                     
-    ##  3rd Qu.:48.00                      3rd Qu.: 237051                     
-    ##  Max.   :90.00                      Max.   :1484705                     
-    ##  education.num   marital.status      occupation        relationship      
-    ##  Min.   : 1.00   Length:32561       Length:32561       Length:32561      
-    ##  1st Qu.: 9.00   Class :character   Class :character   Class :character  
-    ##  Median :10.00   Mode  :character   Mode  :character   Mode  :character  
-    ##  Mean   :10.08                                                           
-    ##  3rd Qu.:12.00                                                           
-    ##  Max.   :16.00                                                           
-    ##      race               sex             capital.gain    capital.loss   
-    ##  Length:32561       Length:32561       Min.   :    0   Min.   :   0.0  
-    ##  Class :character   Class :character   1st Qu.:    0   1st Qu.:   0.0  
-    ##  Mode  :character   Mode  :character   Median :    0   Median :   0.0  
-    ##                                        Mean   : 1078   Mean   :  87.3  
-    ##                                        3rd Qu.:    0   3rd Qu.:   0.0  
-    ##                                        Max.   :99999   Max.   :4356.0  
-    ##  hours.per.week  native.country        salary         
-    ##  Min.   : 1.00   Length:32561       Length:32561      
-    ##  1st Qu.:40.00   Class :character   Class :character  
-    ##  Median :40.00   Mode  :character   Mode  :character  
-    ##  Mean   :40.44                                        
-    ##  3rd Qu.:45.00                                        
-    ##  Max.   :99.00
+    ##      Name            Job.Titles         Department        Full.or.Part.Time 
+    ##  Length:31101       Length:31101       Length:31101       Length:31101      
+    ##  Class :character   Class :character   Class :character   Class :character  
+    ##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##                                                                             
+    ##  Salary.or.Hourly   Typical.Hours   Annual.Salary     Hourly.Rate    
+    ##  Length:31101       Min.   :10.00   Min.   : 21600   Min.   :  3.00  
+    ##  Class :character   1st Qu.:40.00   1st Qu.: 86730   1st Qu.: 34.55  
+    ##  Mode  :character   Median :40.00   Median : 98940   Median : 39.25  
+    ##                     Mean   :36.48   Mean   : 98751   Mean   : 38.85  
+    ##                     3rd Qu.:40.00   3rd Qu.:109236   3rd Qu.: 49.30  
+    ##                     Max.   :40.00   Max.   :275004   Max.   :134.40  
+    ##                     NA's   :24287   NA's   :6814     NA's   :24287
